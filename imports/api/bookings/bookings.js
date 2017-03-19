@@ -7,3 +7,4 @@ export const Bookings = new Mongo.Collection('bookings');
 // code: intra code - XXXX-NNN-VV
 // title: brief description
 // practice: profit center
+// 

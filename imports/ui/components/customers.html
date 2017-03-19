@@ -1,0 +1,52 @@
+<template name="customers">
+	<h4>Listado de clientes</h4>
+	<a href="/customers/create" class="create-customer">Nuevo cliente</a>
+	<br>
+	<table class="table">
+	<thead>
+		<tr>
+			<th>C&oacute;digo</th>
+			<th>Nombre</th>
+			<th>Acciones</th>
+		</tr>
+	</thead>
+	<tbody>
+		{{#each customers}}
+			<tr>
+				<td>{{code}}</td>
+				<td>{{name}}</td>
+				<td><a href="/customers/edit/{{_id}}">editar</a></td>
+			</tr>
+		{{/each}}
+	</tbody></table>
+</template>
+
+<template name="customers_create">
+	<h4>Crear cliente</h4>
+    <form class="create-customer">
+    	<div class="form-group">
+    		<label for="code">C&oacute;digo</label>
+    		<div class="row"><div class="col-md-6"><input type="text" name="code" id="code" placeholder="C&oacute;digo Intra" class="form-control" maxlength="4"></div></div>
+    	</div>
+    	<div class="form-group">
+    		<label for="name">Nombre</label>
+	    	<div class="row"><div class="col-md-6"><input type="text" name="name" id="name" placeholder="Nombre" class="form-control"></div></div>
+    	</div>
+    	<div class="modal-footer col-md-6">
+     		<button class="btn btn-primary" type="submit">Salvar</button>
+	     	<a class="btn btn-danger cancel" href="/customers">Volver</a>
+     	</div>
+    </form>
+</template>
+
+<template name="customers_edit">
+    <form class="edit-customer">
+    	{{#with customer}}
+    		<input type="text" name="code" value="{{code}}">
+    		<input type="text" name="name" value="{{name}}">
+    	{{/with}}
+     	<button type="submit">Salvar</button>
+     	<a class="delete" href="#">Eliminar</a>
+     	<a class="cancel" href="/customers">Volver</a>
+    </form>
+</template>

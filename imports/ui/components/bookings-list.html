@@ -1,0 +1,7 @@
+<template name="bookings_list">
+	<ul>
+	{{#each bookings}}
+		<li><a href="https://intrasoft.softtek.com/proposta/prop_dados.asp?cli={{customerCode}}&opp={{bookingConsecutive}}">{{code}}</a> {{title}} {{value}}</li>
+	{{/each}}
+	</ul>
+</template>
