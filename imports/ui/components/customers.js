@@ -24,8 +24,16 @@ Template.customers_create.events({
         event.preventDefault();
         var customerCode = template.$('input[name=code]').val();
         var customerName = template.$('input[name=name]').val();
-        if (customerName.length && customerCode.length === 4) {
-            Customers.insert( { code: customerCode, name: customerName } );
+        var customerIndustry = template.$('input[name=industry]').val();
+        var customerSince = template.$('input[name=customer_since]').val();
+        if (customerName.length && customerCode.length === 4 && customerIndustry.length) {
+            Customers.insert( 
+            	{ 	
+            		code: customerCode, 
+            		name: customerName, 
+            		industry: customerIndustry,
+            		customerSince: customerSince,
+            	});
 	        FlowRouter.go('/customers');
         }
 	},
@@ -52,5 +60,23 @@ Template.customers_edit.events({
 		event.preventDefault();
 		Customers.remove(customerId);
 		FlowRouter.go('/customers');
+	},
+	'submit form.edit-customer': function(event, template) {
+        event.preventDefault();
+		var customerId = FlowRouter.getParam("id");
+        var customerName = template.$('input[name=name]').val();
+        var customerIndustry = template.$('input[name=industry]').val();
+        var customerSince = template.$('input[name=customer_since]').val();
+        if (customerName.length  && customerIndustry.length) {
+            Customers.update(customerId, 
+            	{ 
+            		$set: { 
+            				name: customerName, 
+            				industry: customerIndustry,
+            				customerSince: customerSince,
+            			} 
+            	});
+	        FlowRouter.go('/customers');
+        }
 	},
 });

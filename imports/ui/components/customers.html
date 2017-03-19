@@ -7,14 +7,16 @@
 		<tr>
 			<th>C&oacute;digo</th>
 			<th>Nombre</th>
+			<th>Industria</th>
 			<th>Acciones</th>
 		</tr>
 	</thead>
 	<tbody>
 		{{#each customers}}
 			<tr>
-				<td>{{code}}</td>
+				<td><a target="_blank" rel="noopener noreferrer" href="https://intrasoft.softtek.com/cliente/cliente_dados.asp?cli={{code}}">{{code}}</a></td>
 				<td>{{name}}</td>
+				<td>{{industry}}</td>
 				<td><a href="/customers/edit/{{_id}}">editar</a></td>
 			</tr>
 		{{/each}}
@@ -26,27 +28,52 @@
     <form class="create-customer">
     	<div class="form-group">
     		<label for="code">C&oacute;digo</label>
-    		<div class="row"><div class="col-md-6"><input type="text" name="code" id="code" placeholder="C&oacute;digo Intra" class="form-control" maxlength="4"></div></div>
+    		<div class="row"><div class="col-md-6"><input type="text" name="code" id="code" placeholder="C&oacute;digo Intra" class="form-control" maxlength="4" required></div></div>
     	</div>
     	<div class="form-group">
     		<label for="name">Nombre</label>
-	    	<div class="row"><div class="col-md-6"><input type="text" name="name" id="name" placeholder="Nombre" class="form-control"></div></div>
+	    	<div class="row"><div class="col-md-6"><input type="text" name="name" id="name" placeholder="Nombre" class="form-control" required></div></div>
+    	</div>
+    	<div class="form-group">
+    		<label for="industry">Industria</label>
+	    	<div class="row"><div class="col-md-6"><input type="text" name="industry" id="industry" placeholder="Industria" class="form-control" required></div></div>
+    	</div>
+    	<div class="form-group">
+    		<label for="customer_since">Cliente desde</label>
+	    	<div class="row"><div class="col-md-6"><input type="text" name="customer_since" id="customer_since" placeholder="Año" class="form-control" required></div></div>
     	</div>
     	<div class="modal-footer col-md-6">
-     		<button class="btn btn-primary" type="submit">Salvar</button>
-	     	<a class="btn btn-danger cancel" href="/customers">Volver</a>
+     		<button class="btn btn-success" type="submit">Salvar</button>
+	     	<a class="btn btn-normal cancel" href="/customers">Volver</a>
      	</div>
     </form>
 </template>
 
 <template name="customers_edit">
+	<h4>Crear cliente</h4>
     <form class="edit-customer">
     	{{#with customer}}
-    		<input type="text" name="code" value="{{code}}">
-    		<input type="text" name="name" value="{{name}}">
+    	<div class="form-group">
+    		<label for="code">C&oacute;digo</label>
+    		<div class="row"><div class="col-md-6"><input type="text" name="code" id="code" value="{{code}}" class="form-control" readonly></div></div>
+    	</div>
+    	<div class="form-group">
+    		<label for="name">Nombre</label>
+	    	<div class="row"><div class="col-md-6"><input type="text" name="name" id="name" value="{{name}}" class="form-control" required></div></div>
+    	</div>
+    	<div class="form-group">
+    		<label for="industry">Industria</label>
+	    	<div class="row"><div class="col-md-6"><input type="text" name="industry" id="industry" value="{{industry}}" class="form-control" required></div></div>
+    	</div>
+    	<div class="form-group">
+    		<label for="customer_since">Cliente desde</label>
+	    	<div class="row"><div class="col-md-6"><input type="text" name="customer_since" id="customer_since" value="{{customerSince}}" class="form-control" required></div></div>
+    	</div>
     	{{/with}}
-     	<button type="submit">Salvar</button>
-     	<a class="delete" href="#">Eliminar</a>
-     	<a class="cancel" href="/customers">Volver</a>
+    	<div class="modal-footer col-md-6">
+	     	<button class="btn btn-success" type="submit">Salvar</button>
+	     	<a class="btn btn-danger delete" href="#">Eliminar</a>
+	     	<a class="btn btn-normar cancel" href="/customers">Volver</a>
+     	</div>
     </form>
 </template>
