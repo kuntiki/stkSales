@@ -40,6 +40,25 @@ customerGroup.route('/edit/:id', {
     BlazeLayout.render('App_body', { main: 'customers_edit'});
   },
 });
+
+var bookingsGroup = FlowRouter.group({
+  prefix: '/bookings',
+});
+
+bookingsGroup.route('/', {
+  name: 'App.bookings',
+  action() {
+    BlazeLayout.render('App_body', { main: 'bookings_list'});
+  },
+});
+
+bookingsGroup.route('/view/:id', {
+  name: 'App.bookings.view',
+  action() {
+    BlazeLayout.render('App_body', { main: 'bookings_view'});
+  },
+});
+
 // // the App_notFound template is used for unknown routes and missing lists
 // FlowRouter.notFound = {
 //   action() {

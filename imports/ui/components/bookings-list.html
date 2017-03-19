@@ -1,7 +1,24 @@
 <template name="bookings_list">
-	<ul>
-	{{#each bookings}}
-		<li><a href="https://intrasoft.softtek.com/proposta/prop_dados.asp?cli={{customerCode}}&opp={{bookingConsecutive}}">{{code}}</a> {{title}} {{value}}</li>
-	{{/each}}
-	</ul>
+	<h4>Ventas</h4>
+	<br>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>C&oacute;digo</th>
+				<th>T&iacute;tulo</th>
+				<th>BRM</th>
+				<th>Valor</th>
+			</tr>
+		</thead>
+		<tbody>
+			{{#each bookings}}
+			<tr>
+				<td><a target="_blank" rel="noopener noreferrer" href="https://intrasoft.softtek.com/proposta/prop_dados.asp?cli={{customerCode}}&opp={{bookingConsecutive}}">{{code}}</a></td>
+				<td>{{title}}</td>
+				<td>{{brm}}</td>
+				<td>{{value}}</td>
+			</tr>
+			{{/each}}
+		</tbody>
+	</table>
 </template>
