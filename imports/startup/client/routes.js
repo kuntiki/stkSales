@@ -7,56 +7,56 @@ import '../../ui/pages/home.js';
 import '../../ui/components/customers.js';
 
 FlowRouter.route('/', {
-  name: 'App.home',
-  action() {
-    BlazeLayout.render('App_body', { main: 'app_home' });
-  },
+	name: 'App.home',
+	action() {
+		BlazeLayout.render('App_body', { main: 'app_home' });
+	},
 });
 
 // Customer pages
 var customerGroup = FlowRouter.group({
-  prefix: '/customers',
+	prefix: '/customers',
 });
 
 customerGroup.route('/', {
-  name: 'App.customers',
-  action() {
-    BlazeLayout.render('App_body', { main: 'customers'});
-  },
+	name: 'App.customers',
+	action() {
+		BlazeLayout.render('App_body', { main: 'customers'});
+	},
 });
 
 customerGroup.route('/create', {
-  name: 'App.customers.create',
-  action() {
-    console.log("create customer");
-    BlazeLayout.render('App_body', { main: 'customers_create'});
-  },
+	name: 'App.customers.create',
+	action() {
+		console.log("create customer");
+		BlazeLayout.render('App_body', { main: 'customers_create'});
+	},
 });
 
 customerGroup.route('/edit/:id', {
-  name: 'App.customers.edit',
-  action() {
-    console.log("edit customer");
-    BlazeLayout.render('App_body', { main: 'customers_edit'});
-  },
+	name: 'App.customers.edit',
+	action() {
+		console.log("edit customer");
+		BlazeLayout.render('App_body', { main: 'customers_edit'});
+	},
 });
 
 var bookingsGroup = FlowRouter.group({
-  prefix: '/bookings',
+	prefix: '/bookings',
 });
 
 bookingsGroup.route('/', {
-  name: 'App.bookings',
-  action() {
-    BlazeLayout.render('App_body', { main: 'bookings_list'});
-  },
+	name: 'App.bookings',
+	action() {
+		BlazeLayout.render('App_body', { main: 'bookings_list'});
+	},
 });
 
 bookingsGroup.route('/view/:id', {
-  name: 'App.bookings.view',
-  action() {
-    BlazeLayout.render('App_body', { main: 'bookings_view'});
-  },
+	name: 'App.bookings.view',
+	action() {
+		BlazeLayout.render('App_body', { main: 'bookings_view'});
+	},
 });
 
 // // the App_notFound template is used for unknown routes and missing lists

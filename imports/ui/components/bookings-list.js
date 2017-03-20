@@ -6,12 +6,15 @@ import './bookings-list.html';
 
 Template.bookings_list.onCreated(function bookingsListOnCreated() {
 	this.autorun(() => {
-		this.subscribe('bookings');
+		var now = new Date();
+		var monthYear = { month: now.getMonth()+1, year: now.getFullYear() };
+		this.subscribe('bookings.inMonth', monthYear);
 	});
 });
 
 Template.bookings_list.helpers({
 	bookings: function() {
+		console.log(Bookings.find().fetch());
 		return Bookings.find();
 	},
 });
