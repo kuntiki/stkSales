@@ -7,6 +7,10 @@ Meteor.publish('bookings', function() {
 });
 
 Meteor.publish('bookings.inMonth', function(params) {
-	console.log(params);
 	return Bookings.find({bookedMonth: params.month, bookedYear: params.year});
+});
+
+Meteor.publish('singleBooking', function(params) {
+	var bookingId = params;
+	return Bookings.find({_id: bookingId});
 });

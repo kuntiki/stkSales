@@ -3,3 +3,6 @@ To Dos:
 * Form validation in customer:
 ** Validate code does not exist
 
+* Selector in bookings:
+** Add selector for year
+** Add logic to select right options at the beginning
