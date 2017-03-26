@@ -27,10 +27,27 @@ Template.bookings_list.helpers({
 		return monthYear.year;
 	},
 	statistics: function() {
-		return {
-			totalValueLC: total = Bookings.find({})
-										.fetch().map(item => item.value).reduce((a, b) => a + b),
-		};
+		var stats = Bookings.find({}).fetch().reduce((runningTotals, opp) => {
+			// Values in local currency
+			runningTotals.totalValueLC = runningTotals.totalValueLC ? runningTotals.totalValueLC + opp.value : opp.value;
+			// totalServicesLC: runningTotals.totalServicesLC + 0;
+			// totalProductLC: 0,
+			// totalLaborLC: 0,
+			// totalProductCostLC: 0,
+			// // Values in USD
+			// totalValueUSD: 0,
+			// totalServicesUSD: 0,
+			// totalProductUSD: 0,
+			// totalLaborUSD: 0,
+			// totalProductCostUSD: 0,
+			// // Operations
+			runningTotals.totalHours = runningTotals.totalHours ? runningTotals.totalHours + opp.adjHours : opp.adjHours;
+			// servicesGMPerc: 0,
+			// productGMPerc: 0,
+			return runningTotals;
+		}, {});
+		console.log(stats);
+		return stats;
 	},
 });
 
@@ -58,3 +75,17 @@ Template.bookings_view.helpers({
 	},
 });
 
+Template.bookings_view.events({
+	'submit form.view-booking': function(event, template) {
+		event.preventDefault();
+		var bookingId = FlowRouter.getParam("id");
+        var adjHours = template.$('input[name=adjHours]').val();
+        Bookings.update(bookingId, 
+        	{ 
+        		$set: { 
+        				adjHours: adjHours, 
+        			} 
+        	});
+	        FlowRouter.go('/bookings');
+	},
+});
