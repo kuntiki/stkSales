@@ -5,11 +5,20 @@ import { BlazeLayout } from 'meteor/kadira:blaze-layout';
 import '../../ui/layouts/app-body.js';
 import '../../ui/pages/home.js';
 import '../../ui/components/customers.js';
+import '../../ui/components/uploads.js';
 
 FlowRouter.route('/', {
 	name: 'App.home',
 	action() {
 		BlazeLayout.render('App_body', { main: 'app_home' });
+	},
+});
+
+// Uploads page
+FlowRouter.route('/csvs', {
+	name: 'App.csvs',
+	action() {
+		BlazeLayout.render('App_body', { main: 'uploads' });
 	},
 });
 
@@ -41,6 +50,7 @@ customerGroup.route('/edit/:id', {
 	},
 });
 
+// Booking pages
 var bookingsGroup = FlowRouter.group({
 	prefix: '/bookings',
 });

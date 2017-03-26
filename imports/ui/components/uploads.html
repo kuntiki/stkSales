@@ -1,0 +1,8 @@
+<template name="uploads">
+	<h4>Cargar datos</h4>
+	{{#unless uploading}}
+		<input type="file" name="uploadBookings">
+	{{else}}
+		<p><i class="fa fa-spin fa-refresh"></i>Uploading files...</p>
+	{{/unless}}
+</template>
