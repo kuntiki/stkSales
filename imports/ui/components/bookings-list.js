@@ -79,11 +79,14 @@ Template.bookings_view.events({
 	'submit form.view-booking': function(event, template) {
 		event.preventDefault();
 		var bookingId = FlowRouter.getParam("id");
+		// Adjusted properties
         var adjHours = template.$('input[name=adjHours]').val();
+        var adjBrm = template.$('input[name=adjBrm]').val();
         Bookings.update(bookingId, 
         	{ 
         		$set: { 
-        				adjHours: adjHours, 
+        				adjHours: adjHours,
+        				adjBrm: adjBrm, 
         			} 
         	});
 	        FlowRouter.go('/bookings');
