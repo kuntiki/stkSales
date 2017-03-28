@@ -6,3 +6,5 @@ To Dos:
 * Selector in bookings:
 ** Add selector for year
 ** Add logic to select right options at the beginning
+
+* Create a server method to upload data
